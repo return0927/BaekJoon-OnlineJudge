@@ -1,0 +1,1 @@
+print("\n".join([str(x+1) for x in range(int(input()))]))
