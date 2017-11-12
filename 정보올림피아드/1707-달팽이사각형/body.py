@@ -12,11 +12,11 @@ class Snail:
                 depth = min(column, row, self.count - column - 1, self.count - row - 1)
 
                 if column >= row:
-                    _temp = column+row - 2*depth
+                    _temp = column + row - 2 * depth
                 else:
-                    _temp = (self.count-1 - 2*depth) * 4 - (column+row - 2*depth)
+                    _temp = (self.count - 1 - 2 * depth) * 4 - (column + row - 2 * depth)
                 _temp += 4 * (depth * self.count - depth ** 2)
-                yield "{:3d}".format(_temp+1)
+                yield "{:3d}".format(_temp + 1)
             yield "\n"
 
 
