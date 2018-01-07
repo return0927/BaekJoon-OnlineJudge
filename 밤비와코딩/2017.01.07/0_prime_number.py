@@ -1,7 +1,7 @@
 def prime(num):
     skip = [1]
 
-    for n in range(1, int( num**1/2 )+1):
+    for n in range(1, int( num**1/2 )+1, 2):
         if n in skip: continue
         #print(n)
         if num % n:
