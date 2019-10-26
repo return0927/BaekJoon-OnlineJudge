@@ -15,6 +15,7 @@ CODE_EXTENSIONS = {
 parser = ArgumentParser()
 parser.add_argument('target', type=str,  nargs='*', default='*', help='Target folder to generate')
 parser.add_argument('--override', action='store_true', help='Override exist README files')
+parser.add_argument('--nowrite', action='store_true', help='No write files. Just print changes to be committed')
 
 
 def escape(name: str) -> str:
@@ -48,14 +49,27 @@ if __name__ == '__main__':
     args: Namespace = parser.parse_args()
     target = args.target
     override = args.override
+    nowrite = args.nowrite
 
     if target == '*':
         target = filter(lambda x: x.isnumeric() and isdir(x), listdir('.'))
 
+    changes = []
     for prob in target:
-        if not override and exists('{}/README.md'.format(prob)):
+        existing = ''
+        if exists('{}/README.md'.format(prob)):
             if getsize('{}/README.md'.format(prob)) > 0:
-                print('Ignoring `{}` because it is not empty.'.format(prob))
-                continue
+                if not override:
+                    print('Ignoring `{}` because it is not empty.'.format(prob))
+                    continue
+                existing = open('{}/README.md'.format(prob), 'r', encoding='UTF-8').read().split('_Page built:')[0]
 
-        open('{}/README.md'.format(prob), 'w', encoding='UTF-8').write(render_template(int(prob)))
+        content = render_template(int(prob))
+        if content.split('_Page built:')[0] != existing:
+            if nowrite:
+                changes.append(prob)
+                continue
+            open('{}/README.md'.format(prob), 'w', encoding='UTF-8').write(render_template(int(prob)))
+
+    if changes:
+        print('Changes would be in', ', '.join(changes))
