@@ -3,7 +3,7 @@
 > [View in BOJ](https://www.acmicpc.net/problem/2839)
 
 ## Solutions
-- [Solution on C++](2839 설탕 배달.cpp)
+- [Solution on C++](2839%20설탕%20배달.cpp)
 
 
-_Page built: Oct 26 2019 08:24:51 (W+42, UTC)_
+_Page built: Oct 26 2019 08:30:16 (W+42, UTC)_

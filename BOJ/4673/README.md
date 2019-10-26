@@ -3,7 +3,7 @@
 > [View in BOJ](https://www.acmicpc.net/problem/4673)
 
 ## Solutions
-- [Solution on C++](4673 셀프 넘버.cpp)
+- [Solution on C++](4673%20셀프%20넘버.cpp)
 
 
-_Page built: Oct 26 2019 08:24:51 (W+42, UTC)_
+_Page built: Oct 26 2019 08:30:16 (W+42, UTC)_

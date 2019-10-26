@@ -1,5 +1,6 @@
 from os import mkdir, getcwd, chdir, listdir
 from os.path import exists, isdir, isfile, basename, getsize
+from urllib.parse import quote
 from datetime import datetime, timezone
 from argparse import ArgumentParser, Namespace
 
@@ -13,6 +14,12 @@ CODE_EXTENSIONS = {
 # Make help command
 parser = ArgumentParser()
 parser.add_argument('target', type=str,  nargs='*', default='*', help='Target folder to generate')
+parser.add_argument('--override', action='store_true', help='Override exist README files')
+
+
+def escape(name: str) -> str:
+    name = name.replace(' ', '%20')
+    return name
 
 
 def render_template(num: int=1000, title: str=None):
@@ -31,7 +38,7 @@ _Page built: {dtime}_
     solution_string = ''
     for code in codes:
         lang = CODE_EXTENSIONS[code.split('.')[-1].lower()]
-        solution_string += '- [Solution on {}]({})\n'.format(lang, code)
+        solution_string += '- [Solution on {}]({})\n'.format(lang, escape(code))
 
     return TEMPLATE.format(prob_num=num, prob_title=None, solutions=solution_string,
                            dtime=datetime.utcnow().strftime('%b %d %Y %X (W+%W, UTC)'))
@@ -40,12 +47,13 @@ _Page built: {dtime}_
 if __name__ == '__main__':
     args: Namespace = parser.parse_args()
     target = args.target
+    override = args.override
 
     if target == '*':
         target = filter(lambda x: x.isnumeric() and isdir(x), listdir('.'))
 
     for prob in target:
-        if exists('{}/README.md'.format(prob)):
+        if not override and exists('{}/README.md'.format(prob)):
             if getsize('{}/README.md'.format(prob)) > 0:
                 print('Ignoring `{}` because it is not empty.'.format(prob))
                 continue

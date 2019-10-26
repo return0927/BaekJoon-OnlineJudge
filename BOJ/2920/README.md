@@ -3,7 +3,7 @@
 > [View in BOJ](https://www.acmicpc.net/problem/2920)
 
 ## Solutions
-- [Solution on C++](2920 음계.cpp)
+- [Solution on C++](2920%20음계.cpp)
 
 
-_Page built: Oct 26 2019 08:24:51 (W+42, UTC)_
+_Page built: Oct 26 2019 08:30:16 (W+42, UTC)_

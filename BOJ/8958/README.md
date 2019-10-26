@@ -3,7 +3,7 @@
 > [View in BOJ](https://www.acmicpc.net/problem/8958)
 
 ## Solutions
-- [Solution on C++](8958 OX퀴즈.cpp)
+- [Solution on C++](8958%20OX퀴즈.cpp)
 
 
-_Page built: Oct 26 2019 08:24:51 (W+42, UTC)_
+_Page built: Oct 26 2019 08:30:16 (W+42, UTC)_
