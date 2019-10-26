@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
     int a, b;
-    scanf("%d %d", &a, &b);  // scanf_s¸¦ ¾²·Á°í Çß´Âµ¥ BaekJoon¿¡¼­ No scope ¿À·ù¸¦ ³½´Ù..
+    scanf("%d %d", &a, &b);  // scanf_së¥¼ ì“°ë ¤ê³  í–ˆëŠ”ë° BaekJoonì—ì„œ No scope ì˜¤ë¥˜ë¥¼ ë‚¸ë‹¤..
     printf("%d", a-b);
     return 0;
 }
