@@ -16,39 +16,42 @@ def lcm(a, b):
 ###########################################################
 
 
-def custom_iter(m, n):
-    limit = lcm(m, n)
-    m = [*range(1, m+1)]
-    n = [*range(1, n+1)]
-
-    count = 0
-    while count <= limit:
-        count += 1
-        a, m = m[0], m[1:] + [m[0]]
-        b, n = n[0], n[1:] + [n[0]]
-
-        yield a, b
-
-    yield -1, -1
-
-
 for run in range(cases):
     M, N, x, y = [int(x) for x in input().split(' ')]
+    limit = lcm(M, N)
 
-    _lcm = lcm(M, N)
-
-    count = 0
-    found = False
-    for a, b in custom_iter(M, N):
-        if a == -1 or b == -1:
-            break
-
-        count += 1
-        if a == x and b == y:
-            print(count)
-            found = True
-            break
-
-    if found:
+    if x == y:
+        print(x)
         continue
-    print(-1)
+
+    if M > N:
+        t = x
+        count = x
+        found = False
+
+        while count <= limit and not found:
+            count += M
+            t = (t + M - 1) % N + 1
+            # print(count, t)
+            if t == y:
+                found = True
+                print(count)
+
+        if not found:
+            print(-1)
+
+    else:
+        t = y
+        count = y
+        found = False
+
+        while count <= limit and not found:
+            count += N
+            t = (t + N - 1) % M + 1
+            # print(count, t)
+            if t == x:
+                found = True
+                print(count)
+
+        if not found:
+            print(-1)
