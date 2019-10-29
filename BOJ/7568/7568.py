@@ -26,9 +26,7 @@ for i in range(N):
     for j in range(N):
         w, h = humans[j]
 
-        if i == j:
-            matrix[j][i] = None
-        elif mw > w and mh > h:
+        if mw > w and mh > h:
             matrix[j][i] = True
 
 ranks = [x.count(True) + 1 for x in matrix]
